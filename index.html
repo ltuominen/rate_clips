@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <script src="./jspsych-6.1.0/jspsych.js"></script>
+    <script src="./jspsych-6.1.0/plugins/jspsych-video-slider-response.js"></script>
+    <script src="./jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="./jspsych-6.1.0/css/jspsych.css"></link>
+  </head>
+  <body>
+  <script>
+
+  var pre_trial = {
+    type: 'html-button-response',
+    stimulus: '<div style="max-width:600px;"><p>Welcome to the experiment!</p></div>',
+    choices: ['continue']
+  }
+
+  var trial = {
+    type: 'video-slider-response',
+    sources: ['./mov/TheRover.ogg'],
+    labels: ['Really bad', 'A bit bad', 'So so', 'Ok', 'Great'],
+    min: 0,
+    max: 99,
+    step: 1,
+    slider_start: 50,
+    prompt: 'Rate this video clip',
+    require_movement: true,
+    width: 600,
+    //height: 600,
+    autoplay: true,
+    //controls: true,
+    //start: 8,
+    //stop: 9,
+    rate: 1,
+    //trial_duration: 2000,
+    //trial_ends_after_video: true,
+    response_ends_trial: true
+  }
+
+  jsPsych.init({
+
+    show_preload_progress_bar: true,
+    timeline: [pre_trial, trial],
+    on_finish: function() { jsPsych.data.displayData(); }
+  });
+
+  </script>
+  </body>
+</html>
